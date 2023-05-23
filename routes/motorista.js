@@ -58,7 +58,12 @@ router.get('/', login.verifyToken, (req, res, next) => {
                             status: prod.status,
                             favorito: prod.favorito,
                             dataEnvioCurriculo: prod.dataEnvioCurriculo,
-                            statusFinal: prod.statusFinal
+                            statusFinal: prod.statusFinal,
+                            escolaridade: prod.escolaridade,
+                            PIS: prod.PIS,
+                            nacionalidadePaís: prod.nacionalidadePaís,
+                            nacionalidadeEstado: prod.nacionalidadeEstado,
+                            nacionalidadeCidade: prod.nacionalidadeCidade,
                         }
 
                     })
@@ -124,7 +129,12 @@ router.get('/favoritos/favoritos', login.verifyToken, (req, res, next) => {
                             status: prod.status,
                             favorito: prod.favorito,
                             dataEnvioCurriculo: prod.dataEnvioCurriculo,
-                            statusFinal: prod.statusFinal
+                            statusFinal: prod.statusFinal,
+                            escolaridade: prod.escolaridade,
+                            PIS: prod.PIS,
+                            nacionalidadePaís: prod.nacionalidadePaís,
+                            nacionalidadeEstado: prod.nacionalidadeEstado,
+                            nacionalidadeCidade: prod.nacionalidadeCidade,
                         }
 
                     })
@@ -193,7 +203,12 @@ router.get('/:id', login.verifyToken, (req, res, next) => {
                         status: result[0].status,
                         favorito: result[0].favorito,
                         dataEnvioCurriculo: result[0].dataEnvioCurriculo,
-                        statusFinal: result[0].statusFinal
+                        statusFinal: result[0].statusFinal,
+                        escolaridade: result[0].escolaridade,
+                        PIS: result[0].PIS,
+                        nacionalidadePaís: result[0].nacionalidadePaís,
+                        nacionalidadeEstado: result[0].nacionalidadeEstado,
+                        nacionalidadeCidade: result[0].nacionalidadeCidade,
                     }
                 }
                 return res.status(200).json(response)
@@ -293,7 +308,12 @@ router.get('/pesquisar/pesquisar', login.verifyToken, (req, res, next) => {
                         status: prod.status,
                         favorito: prod.favorito,
                         dataEnvioCurriculo: prod.dataEnvioCurriculo,
-                        statusFinal: prod.statusFinal
+                        statusFinal: prod.statusFinal,
+                        escolaridade: prod.escolaridade,
+                        PIS: prod.PIS,
+                        nacionalidadePaís: prod.nacionalidadePaís,
+                        nacionalidadeEstado: prod.nacionalidadeEstado,
+                        nacionalidadeCidade: prod.nacionalidadeCidade,
                     }
                 })
             }
@@ -311,7 +331,7 @@ router.patch('/:id', (req, res, next) => {
 
         conn.query(
             `UPDATE tabelaMotorista SET 
-            nomeCompleto = ?, CPF = ?, telefoneContato = ?, email = ?, cidade = ?, CEP = ?, estado = ?, bairro = ?, rua = ?, numeroCasa = ?, complemento = ?, nomeEmpresa1 = ?, cargoEmpresa1 = ?, dataInicioEmpresa1 = ?, dataFinalEmpresa1 = ?, EmpregoAtualEmpresa1 = ?, semExperienciaEmpresa1 = ?, exercicioCargoAntigoEmpresa1 = ?, nomeEmpresa2 = ?, cargoEmpresa2 = ?, dataInicioEmpresa2 = ?,dataFinalEmpresa2 = ?, exercicioCargoAntigoEmpresa2 = ?, nomeEmpresa3 = ?, cargoEmpresa3 = ?, dataInicioEmpresa3 = ?,dataFinalEmpresa3 = ?, exercicioCargoAntigoEmpresa3 = ?, vagaPretendida = ?, aceitoTermo = ?, status = ?, favorito = ?, dataEnvioCurriculo = ? WHERE id = ?`,
+            nomeCompleto = ?, CPF = ?, telefoneContato = ?, email = ?, cidade = ?, CEP = ?, estado = ?, bairro = ?, rua = ?, numeroCasa = ?, complemento = ?, nomeEmpresa1 = ?, cargoEmpresa1 = ?, dataInicioEmpresa1 = ?, dataFinalEmpresa1 = ?, EmpregoAtualEmpresa1 = ?, semExperienciaEmpresa1 = ?, exercicioCargoAntigoEmpresa1 = ?, nomeEmpresa2 = ?, cargoEmpresa2 = ?, dataInicioEmpresa2 = ?,dataFinalEmpresa2 = ?, exercicioCargoAntigoEmpresa2 = ?, nomeEmpresa3 = ?, cargoEmpresa3 = ?, dataInicioEmpresa3 = ?,dataFinalEmpresa3 = ?, exercicioCargoAntigoEmpresa3 = ?, vagaPretendida = ?, aceitoTermo = ?, status = ?, favorito = ?, dataEnvioCurriculo = ?, statusFinal = ?, escolaridade = ?, PIS = ?, nacionalidadePaís = ?, nacionalidadeEstado = ?, nacionalidadeCidade = ? WHERE id = ?`,
             [
                 req.body.nomeCompleto,
                 req.body.CPF,
@@ -347,6 +367,11 @@ router.patch('/:id', (req, res, next) => {
                 req.body.favorito,
                 req.body.dataEnvioCurriculo,
                 req.body.statusFinal,
+                req.body.escolaridade,
+                req.body.PIS,
+                req.body.nacionalidadePaís,
+                req.body.nacionalidadeEstado,
+                req.body.nacionalidadeCidade,
                 req.params.id
             ],
 
