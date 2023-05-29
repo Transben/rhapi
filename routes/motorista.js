@@ -145,6 +145,29 @@ router.get('/favoritos/favoritos', login.verifyToken, (req, res, next) => {
     })
 });
 
+/* GET DE NUMEROS */
+router.get('/segmento/:vagaPretendida', login.verifyToken, (req, res, next) => {
+
+    mysql.getConnection((error, conn) => {
+
+        if (error) { return res.status(500).send({ error: error }) }
+
+        conn.query(
+            'SELECT * FROM tabelaMotorista WHERE vagaPretendida = ?;',
+            [req.params.vagaPretendida],
+            (error, result, fields) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error }) }
+
+                const response = {
+                    quantidade: result.length,
+                }
+                return res.status(200).json(response)
+            }
+        )
+    })
+});
+
 /* Get SOMENTE DE UM DADO RETORNADO PELO SEU ID */
 router.get('/:id', login.verifyToken, (req, res, next) => {
     mysql.getConnection((error, conn) => {
