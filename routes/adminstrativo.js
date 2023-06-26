@@ -527,6 +527,37 @@ router.patch('/statusfinal/alterar/:id', login.verifyToken, (req, res, next) => 
 });
 
 /* DELETA PRODUTO POR PARAMETRO DA URL */
+router.patch('/alterar/listaderegistros', login.verifyToken, (req, res, next) => {
+    const ids = req.query.ids.split(','); // transforma a string em um array de ids
+    
+    mysql.getConnection((error, conn) => {
+      if (error) {
+        return res.status(500).send({ error: error });
+      }
+  
+      // itera sobre o array de ids, executando a query de delete para cada um
+      ids.forEach(id => {
+        conn.query(
+          'UPDATE FROM tabelaEscritorio WHERE id = ?',
+          [id],
+          (error, result, fields) => {
+            if (error) {
+              console.log(error);
+            }
+          }
+        )
+      })
+  
+      conn.release();
+  
+      const response = {
+        mensagem: 'Registros alterados com sucesso!',
+      }
+      return res.status(202).send({ response });
+    })
+  });
+
+/* DELETA PRODUTO POR PARAMETRO DA URL */
 router.delete('/deletar', login.verifyToken, (req, res, next) => {
     const ids = req.query.ids.split(','); // transforma a string em um array de ids
     
