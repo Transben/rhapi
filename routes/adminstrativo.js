@@ -537,7 +537,7 @@ router.patch('/alterar/listaderegistros', login.verifyToken, (req, res, next) =>
       // itera sobre o array de ids, executando a query de update para cada um
       ids.forEach(id => {
         conn.query(
-          'UPDATE tabelaEscritorio SET statusFinal = ? WHERE id = ?',
+          'UPDATE tabelaEscritorio SET status = ? WHERE id = ?',
           ['visualizado', id],
           (error, result, fields) => {
             if (error) {
